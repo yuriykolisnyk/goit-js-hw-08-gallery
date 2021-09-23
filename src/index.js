@@ -9,7 +9,6 @@ const modalBtnClose = document.querySelector(".lightbox__button");
 // const modalBtnRight = document.querySelector(".scroll-right");
 // const modalBtnLeft = document.querySelector(".scroll-left");
 
-galleryContainer.addEventListener("click", modalOpen);
 galleryContainer.insertAdjacentHTML(
   "beforeend",
   galleryCardMarkup(galleryItems)
@@ -31,6 +30,8 @@ function galleryCardMarkup(img) {
     .join("");
 }
 
+galleryContainer.addEventListener("click", modalOpen);
+
 function modalOpen(event) {
   event.preventDefault();
 
@@ -40,18 +41,18 @@ function modalOpen(event) {
   modal.classList.add("is-open");
   modalImg.src = event.target.dataset.source;
   modalImg.alt = event.target.alt;
+  modalBtnClose.addEventListener("click", modalClose);
   overlay.addEventListener("click", modalCloseByOverlayClick);
   document.addEventListener("keydown", modalCloseByEsc);
-  modalBtnClose.addEventListener("click", modalClose);
-  window.addEventListener("keydown", modalImgScrolling);
+  // window.addEventListener("keydown", modalImgScrolling);
 }
 
 function modalClose(event) {
   modal.classList.remove("is-open");
+  modalBtnClose.removeEventListener("click", modalClose);
   overlay.removeEventListener("click", modalCloseByOverlayClick);
   document.removeEventListener("keydown", modalCloseByEsc);
-  modalBtnClose.removeEventListener("click", modalClose);
-  window.removeEventListener("keydown", modalImgScrolling);
+  // window.removeEventListener("keydown", modalImgScrolling);
 }
 
 function modalCloseByEsc(event) {
