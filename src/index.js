@@ -3,11 +3,8 @@ import galleryItems from "./app.js";
 const galleryContainer = document.querySelector(".js-gallery");
 const modal = document.querySelector(".js-lightbox");
 const modalImg = document.querySelector(".lightbox__image");
-// const modalContent = document.querySelector(".lightbox__image");
 const overlayClose = document.querySelector(".lightbox__overlay");
 const modalBtnClose = document.querySelector(".lightbox__button");
-// const modalBtnRight = document.querySelector(".scroll-right");
-// const modalBtnLeft = document.querySelector(".scroll-left");
 
 galleryContainer.insertAdjacentHTML(
   "beforeend",
@@ -19,11 +16,11 @@ function galleryCardMarkup(img) {
     .map(({ preview, original, description }) => {
       return `<li class="gallery__item">
                     <a class="gallery__link"
-                     href=${original}>
+                     href='${original}'>
                          <img class="gallery__image"
-                          src=${preview}
-                          data-source=${original}
-                          alt=${description} />
+                          src='${preview}'
+                          data-source='${original}'
+                          alt='${description}' />
                     </a>
                     </li>`;
     })
@@ -44,7 +41,6 @@ function modalOpen(event) {
   modalBtnClose.addEventListener("click", modalClose);
   overlayClose.addEventListener("click", modalCloseByOverlayClick);
   document.addEventListener("keydown", modalCloseByEsc);
-  // window.addEventListener("keydown", modalImgScrolling);
 }
 
 function modalClose(event) {
@@ -52,7 +48,6 @@ function modalClose(event) {
   modalBtnClose.removeEventListener("click", modalClose);
   overlayClose.removeEventListener("click", modalCloseByOverlayClick);
   document.removeEventListener("keydown", modalCloseByEsc);
-  // window.removeEventListener("keydown", modalImgScrolling);
 }
 
 function modalCloseByOverlayClick(event) {
